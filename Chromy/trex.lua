@@ -19,9 +19,9 @@ function trex.load()
 end
 
 trex.hitbox = {
-    x = trex.x,
+    x = trex.x + 21,
     y = trex.y,
-    width = trex.trexImage:getWidth() * 0.25,
+    width = trex.trexImage:getWidth() * 0.16 ,
     height = trex.trexImage:getHeight() * 0.25
 }
 
@@ -32,6 +32,9 @@ function trex.draw()
        love.graphics.setColor(1, 1, 1) -- Reset color to white to avoid tinting the image
        --love.graphics.draw(playerImage, x, y, 0, 0.25, 0.25)
        love.graphics.draw(trex.trexImage, trex.x, playerBottomY - trex.trexImage:getHeight() * 0.25, 0, 0.25, 0.25)
+       love.graphics.setColor(1, 0, 0, 0.5)  -- RGBA: red, green, blue, alpha
+       love.graphics.rectangle("fill", trex.hitbox.x,trex.hitbox.y +15 , trex.hitbox.width, trex.hitbox.height)
+       love.graphics.setColor(1, 1, 1, 1)
 end
 
 -- Handle key presses
@@ -52,13 +55,14 @@ end
 function trex.update(dt)
     -- Apply gravity
     trex.velocityY = trex.velocityY + trex.gravity * dt
-
     if trex.isJumping then
         -- Update the player's position if jumping
         trex.y = trex.y + trex.velocityY * dt
+        trex.hitbox.y = trex.hitbox.y + trex.velocityY * dt
         -- Check if the player has reached the ground
-        if trex.y >= ground.groundY - 100 then
+        if trex.y >= ground.groundY - 100 and trex.hitbox.y >= ground.groundY -100 then
             trex.y = ground.groundY - 100
+            trex.hitbox.y = ground.groundY - 100
             trex.isJumping = false
             trex.velocityY = 0
         end

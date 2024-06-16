@@ -23,8 +23,8 @@ end
 
 function bird.draw()
     love.graphics.draw(bird.image, bird.x, bird.y - bird.image:getHeight() * 0.12, 0, -0.12, 0.12)
-    love.graphics.setColor(0, 1, 0, 0.5)  -- RGBA: red, green, blue, alpha
-    love.graphics.rectangle("fill", bird.hitbox.x, bird.hitbox.y, bird.hitbox.width*0.5^2, bird.hitbox.height)
+    --love.graphics.setColor(0, 1, 0, 0.5)  -- RGBA: red, green, blue, alpha
+    --love.graphics.rectangle("fill", bird.hitbox.x, bird.hitbox.y, bird.hitbox.width*0.5^2, bird.hitbox.height) -- vizualize the hitbox
     love.graphics.setColor(1, 1, 1, 1)
 end
 

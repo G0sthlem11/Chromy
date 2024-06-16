@@ -32,8 +32,8 @@ function trex.draw()
        love.graphics.setColor(1, 1, 1) -- Reset color to white to avoid tinting the image
        --love.graphics.draw(playerImage, x, y, 0, 0.25, 0.25)
        love.graphics.draw(trex.trexImage, trex.x, playerBottomY - trex.trexImage:getHeight() * 0.25, 0, 0.25, 0.25)
-       love.graphics.setColor(1, 0, 0, 0.5)  -- RGBA: red, green, blue, alpha
-       love.graphics.rectangle("fill", trex.hitbox.x,trex.hitbox.y +15 , trex.hitbox.width, trex.hitbox.height)
+       --love.graphics.setColor(1, 0, 0, 0.5)  -- RGBA: red, green, blue, alpha
+       --love.graphics.rectangle("fill", trex.hitbox.x,trex.hitbox.y +15 , trex.hitbox.width, trex.hitbox.height) -- vizualize the hitbox
        love.graphics.setColor(1, 1, 1, 1)
 end
 

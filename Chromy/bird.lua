@@ -1,5 +1,4 @@
 local love = require("love")
-
 local bird = {} -- Create a table to hold the bird's properties and methods
 
 -- bird settings --

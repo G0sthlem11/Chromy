@@ -19,9 +19,9 @@ function trex.load()
 end
 
 trex.hitbox = {
-    x = trex.x + 21,
+    x = trex.x + 30,
     y = trex.y,
-    width = trex.trexImage:getWidth() * 0.16 ,
+    width = trex.trexImage:getWidth() * 0.10 ,
     height = trex.trexImage:getHeight() * 0.25
 }
 

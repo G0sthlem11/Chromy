@@ -11,7 +11,7 @@ local collisionDetected = false
 function damage.update(dt)
     -- Check for collision between the player and the bird
     if not collisionDetected and
-       trex.hitbox.x < bird.hitbox.x + bird.hitbox.width and
+       trex.hitbox.x < bird.hitbox.x + bird.hitbox.width*0.5^2 and
        trex.hitbox.x + trex.hitbox.width > bird.hitbox.x and
        trex.hitbox.y < bird.hitbox.y + bird.hitbox.height and
        trex.hitbox.y + trex.hitbox.height > bird.hitbox.y then

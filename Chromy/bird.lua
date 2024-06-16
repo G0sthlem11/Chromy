@@ -1,4 +1,6 @@
 local love = require("love")
+local damage = require("damage") -- Require the damage module
+local trex = require("trex") -- Require the trex module
 local bird = {} -- Create a table to hold the bird's properties and methods
 
 -- bird settings --
@@ -33,18 +35,34 @@ function bird.reset()
     bird.hitbox.y = bird.y - bird.image:getHeight() * 0.12
 end
 
+function damage.update(dt)
+    -- Check for collision between the player and the bird
+    if not damage.collisionDetected and
+       trex.hitbox.x < bird.hitbox.x + bird.hitbox.width*0.5^2 and
+       trex.hitbox.x + trex.hitbox.width > bird.hitbox.x and
+       trex.hitbox.y < bird.hitbox.y + bird.hitbox.height and
+       trex.hitbox.y + trex.hitbox.height > bird.hitbox.y then
+        -- Collision detected
+        damage.collisionDetected = true
+        print("Collision detected")
+    end
+end
+
 function bird.update(dt)
     -- If the timer is greater than 0, decrease it by dt
+    if damage.collisionDetected then -- if there's no collision detected
+        return
+    end
     if bird.timer > 0 then
         bird.timer = bird.timer - dt
     else
         bird.x = bird.x + bird.velocity * dt
         bird.hitbox.x = bird.hitbox.x + bird.velocity * dt
-    -- If the bird has moved off the left side of the screen, reset its position
+        -- If the bird has moved off the left side of the screen, reset its position
         if bird.x + bird.image:getWidth() * 0.12 < 0 then
             bird.reset()
             bird.timer = 1  -- Set the timer to 6 seconds
-            bird.velocity = love.math.random(-470, -870)
+            bird.velocity = love.math.random(-1150, -1700)
         end
     end
 end

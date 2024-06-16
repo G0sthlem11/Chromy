@@ -4,9 +4,9 @@ local trex = require("trex") -- Require the trex module
 local ground = require("ground") -- Require the ground module
 local damage = require("damage") -- Require the damage module
 local score = require("score") -- Require the score module
+local background = require("background") -- Require the background module
 
--- Background settings
-local backgroundColor = {0.9, 0.9, 0.9}  -- Light gray background
+
 
 -- Window settings
 local width = 1000
@@ -25,15 +25,14 @@ end
 
 -- Draw the game objects
 function love.draw()
- -- Draw the background
-    love.graphics.setColor(backgroundColor)
-    love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
-
+    background.draw()  -- Draw the background
+    --love.graphics.draw(test, 0, 0)
     ground.draw()  -- Draw the ground
     trex.draw()  -- Draw the player
     bird.draw()  -- Draw the bird
     damage.draw()  -- Draw the game over message if collision is detected
     score.draw()  -- Draw the score
+    
     
 end
 
@@ -47,4 +46,5 @@ function love.update(dt)
     bird.update(dt)  -- Update the bird's position
     damage.update()  -- Check for collision between the player and the bird
     score.update(dt)  -- Update the score
+    --background.update(dt)  -- Update the background
 end
